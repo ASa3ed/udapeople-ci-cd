@@ -62,6 +62,8 @@ jobs:
           key: frontend-deps
       - notify_on_failure
 
+
+
   build-backend:
     docker:
       - image: cimg/node:13.8.0
@@ -138,6 +140,15 @@ jobs:
              npm audit fix --force --audit-level=critical
              npm audit --audit-level=critical
       - notify_on_failure
+  notify_on_success:
+    docker:
+       - image: cimg/base:stable
+    steps:
+      - slack/notify:
+         event: pass
+         channel: cicd_pipeline
+         template: success_tagged_deployment_1
+    
 #   deploy-infrastructure:
 #     docker:
 #       # Docker image here that supports AWS CLI
@@ -303,15 +314,7 @@ jobs:
 #               # your code here
 #             fi
           
-   notify_on_success:
-      docker:
-       - image: cimg/base:stable
-      steps:
-         - slack/notify:
-           event: pass
-           channel: cicd_pipeline
-           template: success_tagged_deployment_1
-
+ 
 workflows:
   default:
     jobs:
