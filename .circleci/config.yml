@@ -196,8 +196,6 @@ jobs:
     - image: cimg/python:3.10
     steps:
       - checkout
-      - install_awscli
-      - install_nodejs
       - install_ansible
       - add_ssh_keys:
           fingerprints: ["18:7c:4d:61:15:27:d5:d4:e8:40:00:21:48:f0:36:73"]
