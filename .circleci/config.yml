@@ -212,7 +212,7 @@ jobs:
 
   run-migrations:
     docker:
-      - image: circleci/node:14.18.2-buster-browser-legacy
+      - image: circleci/node:13.8.0
     steps:
       - checkout
       - install_awscli
