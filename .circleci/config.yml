@@ -63,7 +63,7 @@ commands:
 jobs:
   build-frontend:
     docker:
-      - image: cimg/node:14.20
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -81,7 +81,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: cimg/node:14.20
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -98,7 +98,7 @@ jobs:
      
   test-frontend:
     docker:
-      - image: cimg/node:14.20
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -112,7 +112,7 @@ jobs:
              
   test-backend:
     docker:
-      - image: cimg/node:14.20
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -126,7 +126,7 @@ jobs:
      
   scan-frontend:
     docker:
-       - image: cimg/node:14.20
+       - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -142,7 +142,7 @@ jobs:
     
   scan-backend:
     docker:
-       - image: cimg/node:14.20
+       - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
@@ -213,7 +213,7 @@ jobs:
 
   run-migrations:
     docker:
-      - image: cimg/node:14.20
+      - image: cimg/node:15.0.1
     steps:
       - checkout
       - install_awscli
@@ -222,7 +222,10 @@ jobs:
           command: |
             cd backend
             npm install
+            npm audit fix --force --audit-level=critical
+            npm audit fix --force --audit-level=critical
             npm run migrations > migrations_dump.txt
+            
       - run:
           name: Send migration status to kvdb.io
           command: |
