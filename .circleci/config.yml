@@ -253,7 +253,7 @@ jobs:
       - destroy-environment
       - revert-migrations    
 
-      
+
   # run-migrations:
   #   docker:
   #     - image: cimg/node:14.20
